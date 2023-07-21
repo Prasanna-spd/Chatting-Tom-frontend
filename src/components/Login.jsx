@@ -11,8 +11,10 @@ import React, { useState } from "react";
 import { useToast } from "@chakra-ui/react";
 import axios from "axios";
 import { BASE_URL } from "../helper/allUrls";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  let navigate = useNavigate();
   const toast = useToast();
 
   const [email, setEmail] = useState();
@@ -66,6 +68,7 @@ function Login() {
       });
       localStorage.setItem("userInfo", JSON.stringify(response.data));
       setLoading(false);
+      navigate("/chats");
     } catch (error) {
       toast({
         title: "Error Occured!",
