@@ -13,7 +13,7 @@ import parse from "html-react-parser";
 function ScrollableChat({ messages }) {
   const { user } = ChatState();
   return (
-    <>
+    <div style={{ height: "400px", overflowY: "auto" }}>
       <ScrollableFeed>
         {messages &&
           messages.map((m, i) => (
@@ -52,7 +52,7 @@ function ScrollableChat({ messages }) {
             </div>
           ))}
       </ScrollableFeed>
-    </>
+    </div>
   );
 }
 

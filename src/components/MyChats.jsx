@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ChatState } from "../ContextAPI/ChatProvider";
 import { Box, Stack, Text, useToast } from "@chakra-ui/react";
 import axios from "axios";
+import parse from "html-react-parser";
 
 function MyChats({ fetchAgain }) {
   const [loggedUser, setLoggedUser] = useState();
@@ -91,9 +92,10 @@ function MyChats({ fetchAgain }) {
                   {chat.latestMessage && (
                     <Text fontSize="xs" color="cyan.900">
                       <b>{chat.latestMessage.sender.name} : </b>
-                      {chat.latestMessage.content.length > 50
-                        ? chat.latestMessage.content.substring(0, 51) + "..."
-                        : chat.latestMessage.content}
+                      {parse(chat.latestMessage.content).length > 50
+                        ? parse(chat.latestMessage.content).substring(0, 51) +
+                          "..."
+                        : parse(chat.latestMessage.content)}
                     </Text>
                   )}
                 </Box>

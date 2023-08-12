@@ -81,7 +81,6 @@ function SingleChat({ fetchagain, setFetchAgain }) {
           config
         );
         socket.emit("new message", data);
-
         setMessages([...messages, data]);
         console.log("coming from single chat", messages);
         console.log("coming from single chat", newMessage);
@@ -123,7 +122,6 @@ function SingleChat({ fetchagain, setFetchAgain }) {
         config
       );
       setMessages(data);
-      console.log("myOwn chats messages", messages);
       console.log("myOwn chats data", data);
       setLoading(false);
 
@@ -139,6 +137,8 @@ function SingleChat({ fetchagain, setFetchAgain }) {
       });
     }
   };
+
+  console.log("myOwn chats messages", messages);
 
   useEffect(() => {
     socket = io(ENDPOINT);
@@ -156,21 +156,23 @@ function SingleChat({ fetchagain, setFetchAgain }) {
   }, [selectedChat]);
 
   useEffect(() => {
-    socket.on("message recieved", (newMessageRecieved) => {
-      if (
-        !selectedChatCompare ||
-        selectedChatCompare._id !== newMessageRecieved.chat._id
-      ) {
-        // if (!notification.includes(newMessageRecieved)) {
-        //   setNotification([newMessageRecieved, ...notification]);
-        //   setFetchAgain(!fetchAgain);
-        // }
-      } else {
-        setMessages([...messages, newMessageRecieved]);
-      }
+    socket.on("message received", (newMessageRecieved) => {
+      // if (
+      //   !selectedChatCompare ||
+      //   selectedChatCompare._id !== newMessageRecieved.chat._id
+      // ) {
+      //   // if (!notification.includes(newMessageRecieved)) {
+      //   //   setNotification([newMessageRecieved, ...notification]);
+      //   //   setFetchAgain(!fetchAgain);
+      //   // }
+      // } else {
+      setMessages([...messages, newMessageRecieved]);
+      // }
     });
   });
-
+  console.log("selected chats is ", selectedChat);
+  console.log("message is ", messages);
+  console.log("the current users name is ", user.name);
   return (
     <>
       {selectedChat ? (
@@ -194,6 +196,7 @@ function SingleChat({ fetchagain, setFetchAgain }) {
               onClick={() => setSelectedChat("")}
             />
             {selectedChat.chatName.toUpperCase()}
+
             <IconButton icon={<ViewIcon />} />
           </Text>
 

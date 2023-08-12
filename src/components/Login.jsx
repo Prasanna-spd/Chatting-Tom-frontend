@@ -17,8 +17,8 @@ function Login() {
   let navigate = useNavigate();
   const toast = useToast();
 
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [show, setShow] = useState();
   const [loading, setLoading] = useState(false);
 

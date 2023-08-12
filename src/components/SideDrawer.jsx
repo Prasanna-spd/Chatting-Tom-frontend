@@ -86,7 +86,7 @@ function SideDrawer() {
   };
 
   console.log("user is ", user);
-  const accessChat = async (userId) => {
+  const accessChat = async (userId, userName) => {
     try {
       setLoadingChat(true);
       const config = {
@@ -97,7 +97,7 @@ function SideDrawer() {
       };
       const { data } = await axios.post(
         `/api/chats/myChats`,
-        { userId },
+        { userId, userName },
         config
       );
 
@@ -197,7 +197,7 @@ function SideDrawer() {
                 <UserListItem
                   key={user._id}
                   user={user}
-                  handleFunction={() => accessChat(user._id)}
+                  handleFunction={() => accessChat(user._id, user.name)}
                 />
               ))
             )}

@@ -54,7 +54,6 @@ function ProfileModal({ user, children }) {
               fontFamily="Work sans"
             >
               Email: {user.email}
-              Email: jcabkdbcb;skjdcsjkdjbs
             </Text>
           </ModalBody>
           <ModalFooter>
